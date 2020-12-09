@@ -1,94 +1,94 @@
 ﻿  main.cpp
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(57): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
 f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(61): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(65): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(83): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(87): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(88): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(93): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(90): warning C4244: =: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(96): warning C4244: =: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(91): warning C4244: =: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(97): warning C4244: =: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(100): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(106): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(101): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(107): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(103): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(109): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(108): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(114): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(110): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(116): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(120): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(126): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(132): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(147): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(138): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(153): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(160): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(166): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(175): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(181): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(203): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(209): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(211): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(209): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(215): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(217): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(215): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(221): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(218): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(224): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(228): warning C4244: аргумент: преобразование "_Ty" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(222): warning C4244: аргумент: преобразование "_Ty" в "T", возможна потеря данных
           with
           [
               _Ty=double
@@ -97,18 +97,32 @@ f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(228): warnin
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(229): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(223): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(237): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(230): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(248): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(240): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
+          [
+              T=float
+          ]
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(242): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(249): warning C4244: аргумент: преобразование "_Ty" в "T", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+          and
           [
               T=float
           ]
@@ -117,26 +131,12 @@ f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(250): warnin
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(257): warning C4244: аргумент: преобразование "_Ty" в "T", возможна потеря данных
-          with
-          [
-              _Ty=double
-          ]
-          and
-          [
-              T=float
-          ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(258): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(267): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(275): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(279): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+f:\visual studio\programs\gameofimitation\gameofimitation\mapping.h(270): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=float

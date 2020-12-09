@@ -12,7 +12,7 @@ const int j = 4;
 const int k = 2;
 const int NumberInList = 6;
 //р0 = i / 2 * (i + j + k), р1 = (j + k) / 2 * (i + j + k), р2 = (i + k) / 2 * (i + j + k), р3 = j / 2 * (i + j + k)
-class RandomVector {
+class RandomVector {//класс для генерации, хранения и сохранения случайной последовательности значений от 0 до 1
 public:
 	VecD data;
 	RandomVector() :
@@ -49,10 +49,10 @@ public:
 	}
 private:
 	std::random_device randDev;
-	std::mt19937 generator;
+	std::mt19937 generator;//вихрь Мерсенна 
 	std::uniform_real_distribution<> dis;
 };
-class Distribution {
+class Distribution {//родительский класс для построения выборочного рапсределения и вычисления оценок
 public:
 	RandomVector randomVec;
 	VecD edges;
@@ -65,18 +65,17 @@ public:
 	void load() {
 		randomVec.load();
 	}
-	virtual void make() {
+	virtual void make() {//виртуальная функция нахождения частот
 		for (int i{ 0 }; i < randomVec.data.size(); i++) {
 			for (int j{ 0 }; j < edges.size(); j++) {
 				if (randomVec.data[i] < edges[j]) {
-					//dataOut[i] = j;
 					number[j]++;
 					break;
 				}
 			}
 		}
 	}
-	virtual void calculateUnbiasedVarianceExpectedValue() {
+	virtual void calculateUnbiasedVarianceExpectedValue() {//виртуальная функция вычисления несмещённого математического ожидания
 		Mx_ = 0;
 		for (int i{ 0 }; i < randomVec.data.size(); i++) {
 			Mx_ += randomVec.data[i];
@@ -84,10 +83,8 @@ public:
 		Mx_ /= Quantity;
 		std::cout << Mx_ << std::endl;
 	}
-	virtual void calculateUnbiasedVarianceEstimate() {
-		/*По формуле исправленной выборочной дисперсии,
-		но из-за постоянно вовзведения в квадрат чисел с плавающей точкой накапливается погрешность, 
-		поэтому посчитал через M(x^2)-(M(x))^2*/
+	virtual void calculateUnbiasedVarianceEstimate() {//виртуальная функция вычисления несмещённой дисперсии
+		/*По формуле исправленной выборочной дисперсии*/
 		S_ = 0;
 		for (int i{ 0 }; i < randomVec.data.size(); i++) {
 			S_ += (randomVec.data[i] - Mx_)*(randomVec.data[i] - Mx_);
@@ -99,45 +96,60 @@ public:
 		randomVec.generate();
 		randomVec.safe();
 	}
+	void outputNumber() {
+		for (int i{ 0 }; i < number.size(); i++) {
+			std::cout << number[i] << " ";
+		}
+		std::cout << std::endl;
+
+		for (int i{ 0 }; i < number.size(); i++) {
+			std::cout << static_cast<double>(number[i]) / Quantity << " ";
+		}
+		std::cout << std::endl;
+	}
 protected:
 
 	double Mx_;
 	double S_;
 };
-class SamplingDistribution:public Distribution {
+class SamplingDistribution:public Distribution {// класс для выборочного распределения дискретной величины
 public:
-	
+	VecI variables;
 	SamplingDistribution() :
 		Distribution{}		
 	{
-		dataOut.resize(Quantity);
+		variables.resize(4);//массив для значений дискретной случайной величины
+		for (int i{ 0 }; i < variables.size(); i++) {
+			variables[i] = i;
+		}
+		dataOut.resize(Quantity);//массив для запоминания к какому значению относится значение из выборки
 		for (int i{ 0 }; i < dataOut.size(); i++) {
 			dataOut[i] = 0;
 		}
 
-		probability.resize(4);
+		probability.resize(4);//заполение массива вероятностями согласно формулам
 		probability[0] = static_cast<double>(i) / (2 * (i + j + k));
 		probability[1] = static_cast<double>(j + k) / (2 * (i + j + k));
 		probability[2] = static_cast<double>(i + k) / (2 * (i + j + k));
 		probability[3] = static_cast<double>(j) / (2 * (i + j + k));
 
-		edges.resize(probability.size());
+		edges.resize(probability.size());//заполнение массива границ интервалов для вычисления частот
 
 		edges[0] = probability[0];
 		for (int i{ 1 }; i < probability.size(); i++) {
 			edges[i] = edges[i - 1] + probability[i];
 		}
 
-		number.resize(probability.size());
+		number.resize(probability.size());//массив для частот
 		for (int i{ 0 }; i < number.size(); i++) {
 			number[i] = 0;
 		}
 	}
-	void make() {
+	void make() {//подсчёт частот и запоминание значений
 		for (int i{ 0 }; i < randomVec.data.size(); i++) {
 			for (int j{ 0 }; j < edges.size(); j++) {
 				if (randomVec.data[i] < edges[j]) {
-					dataOut[i] = j;
+					dataOut[i] = variables[j];
 					number[j]++;
 					break;
 				}
@@ -145,7 +157,7 @@ public:
 		}
 	}
 	
-	void calculateUnbiasedVarianceExpectedValue() {
+	void calculateUnbiasedVarianceExpectedValue() {//вычисление несмещённого математического ожидания
 		Mx_ = 0;
 		for (int i{ 0 }; i < dataOut.size(); i++) {
 			Mx_ += dataOut[i] * randomVec.data[i];
@@ -170,17 +182,7 @@ public:
 		S_ = m_ - Mx_ * Mx_;
 		std::cout << S_ << std::endl;
 	}
-	void outputNumber() {
-		for (int i{ 0 }; i < number.size(); i++) {
-			std::cout << number[i] << " ";
-		}
-		std::cout << std::endl;
-
-		for (int i{ 0 }; i < number.size(); i++) {
-			std::cout << static_cast<double>(number[i]) / Quantity << " ";
-		}
-		std::cout << std::endl;
-	}
+	
 	void outputProbs() {
 		for (int i{ 0 }; i < probability.size(); i++) {
 			std::cout << probability[i] << " ";
@@ -197,14 +199,14 @@ public:
 		Distribution{} 
 	{}
 	
-	void calculateExponential() {
+	void calculateExponential() {//вычисление экспоненциальных значений
 		double coef = -1 / (NumberInList / 4.);
 		dataExp.resize(randomVec.data.size());
 		for (int i{ 0 }; i < dataExp.size(); i++) {
 			dataExp[i] = coef * log(randomVec.data[i]);
 		}
 	}
-	void make() {
+	void make() {//нахождение частот 
 		for (int i{ 0 }; i <dataExp.size(); i++) {
 			for (int j{ 0 }; j < edges.size(); j++) {
 				if (dataExp[i] < edges[j]) {
@@ -214,9 +216,9 @@ public:
 			}
 		}
 	}
-	void makeEdges() {
+	void makeEdges() {//нахождение границ интервалов
 		double min{ dataExp[0] }, max{ dataExp[0] };
-		for (int i{ 1 }; i < dataExp.size(); i++) {
+		for (int i{ 1 }; i < dataExp.size(); i++) {//находим максимальное и минимальное значения
 			if (dataExp[i] > max) {
 				max = dataExp[i];
 			}
@@ -225,18 +227,17 @@ public:
 			}
 		}
 		double diff = max - min;
-		double h = diff/6;
+		double h = diff/6;//размер интервала
 
-		edges.resize(7);
+		edges.resize(7);//заполнение массива интервалами на один интервал больше, чтобы хранить максимальный элемент
 		edges[0] = h;
 		std::cout << min << " " << max << " "<<diff<<" " << h << std::endl;
 		for (int i{ 1 }; i<edges.size();i++) {
 			edges[i] = edges[i - 1] + h;
 		}
-		//dataOut.resize(Quantity);
 		number.resize(edges.size());
 	}
-	void calculateUnbiasedVarianceExpectedValue() {
+	void calculateUnbiasedVarianceExpectedValue() {//вычисление мат ожидания как среднего арифметического
 		Mx_ = 0;
 		for (int i{ 0 }; i < dataExp.size(); i++) {
 			Mx_ += dataExp[i];
@@ -244,7 +245,7 @@ public:
 		Mx_ /= Quantity;
 		std::cout << Mx_ << std::endl;
 	}
-	void calculateUnbiasedVarianceEstimate() {
+	void calculateUnbiasedVarianceEstimate() {//вычисление дисперсии
 		double m_ = 0;
 		for (int i{ 0 }; i < dataExp.size(); i++) {
 			m_ += dataExp[i]*dataExp[i];

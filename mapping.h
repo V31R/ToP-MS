@@ -3,10 +3,9 @@
 #include <sstream>
 #include <utility>
 #include "vectors.h"
-class Mapping {
+class Mapping {//родительский класс для отображения графиков и гистограмм
 public:
 	Mapping(sf::Font & f, sf::Vector2f s, sf::Vector2f pos) :
-		line{ sf::Lines,2 },
 		font{ f },
 		size{ s },
 		position{ pos },
@@ -22,40 +21,37 @@ public:
 		text.setOutlineColor(sf::Color::Black);
 		text.setOutlineThickness(2.f);
 	}
-	void make(VecD abc, VecD ord) {
+	void make(VecD abc, VecD ord) {/*заполнение массивов по вертикальной и горизонтальной осям, 
+								   нахождение маскимальных элементов и их отношение в размеру отображения*/
 		abcissa = abc;
 		ordinata = ord;
 		double max = 0;
 		for (auto el : abc) {
-			std::cout << el << " ";
 			if (el > max) {
 				max = el;
 			}
 		}
-		std::cout << "\n";
 		abcissa.push_back(max);
 		abcissa.push_back(size.x / max);
 		max = 0;
 		for (auto el : ord) {
-			std::cout << el << " ";
 			if (el > max) {
 				max = el;
 			}
 		}
-		std::cout << "\n";
 		std::cout << std::endl;
 		ordinata.push_back(max);
 		ordinata.push_back(size.y / max);
 
 	}
-	void setDisplayFlag(bool abc = false, bool ord = false) {
+	void setDisplayFlag(bool abc = false, bool ord = false) {//установка флагов отображения осей
 		justDisplay.first = abc;
 		justDisplay.second = ord;
 	}
-	void setColor(sf::Color color) {
+	void setColor(sf::Color color) {//установка цвета отображения данных
 		dataColor = color;
 	}
-	virtual void draw(sf::RenderWindow & window) {
+	virtual void draw(sf::RenderWindow & window) {//виртуальная функция отрисовки для переопределения
 
 		rect.setPosition(position);
 		rect.setSize(sf::Vector2f(thicknessAxis, size.y));
@@ -77,10 +73,9 @@ protected:
 	sf::Vector2f size;
 	VecD abcissa;
 	VecD ordinata;
-	sf::VertexArray line;
 	sf::Vector2f position;
 };
-class Graphic :public Mapping {
+class Graphic :public Mapping {//класс для отображения графиков (знаю, что правильно Graph, но необходимо так)
 public:
 	Graphic(sf::Font & f, sf::Vector2f s, sf::Vector2f pos) :
 		Mapping{ f, s, pos },
@@ -89,7 +84,6 @@ public:
 		displacement{ 0, 0 }
 	{
 		triangle.setFillColor(sf::Color::Black);
-
 		triangle.setOrigin(sf::Vector2f(thicknessAxis * 2, 0));
 	}
 	void setDisplacement(double x = 0, double y = 0) {
@@ -167,7 +161,7 @@ public:
 			beforeLength = 0;
 			for (int i{ 0 }; i < (size.y / textDistance); i++) {
 				std::wostringstream value;
-				value << i * textDistance / ordinata[ordinata.size() - 1];//ordinata[ordinata.size() - 2] - ordinata[ordinata.size() - 2] / static_cast<int>(size.y / textDistance)*(int(size.y / textDistance)-i);
+				value << i * textDistance / ordinata[ordinata.size() - 1];
 				text.setString(value.str());
 				sf::FloatRect rectangle = text.getLocalBounds();
 				text.setPosition(temp - sf::Vector2f{ rectangle.width + rect.getGlobalBounds().width, static_cast<float>(i *textDistance) + rectangle.height / 3 * 2 - displacement.y });
@@ -199,7 +193,7 @@ protected:
 	sf::VertexArray line;
 
 };
-class Histogram : public Mapping {
+class Histogram : public Mapping {//класс для отображения гистограмм
 public:
 	Histogram(sf::Font f, sf::Vector2f s, sf::Vector2f pos) :
 		Mapping{ f, s, pos }
@@ -233,10 +227,8 @@ public:
 				text.setString(value.str());
 				text.setPosition(post.getPosition() + sf::Vector2f(post.getGlobalBounds().width / 2 - text.getGlobalBounds().width / 2, 0));
 				window.draw(text);
-				//if (i < quantity - 1) {
 				rectPtr.setPosition(temp + sf::Vector2f((i + 1)*widthPost + i + thicknessAxis, -rectPtr.getGlobalBounds().height));
 				window.draw(rectPtr);
-				//}
 			}
 		}
 		else {
@@ -275,10 +267,8 @@ public:
 				text.setPosition(temp + sf::Vector2f((i + 1)*widthPost + i + thicknessAxis - textRect.width / 2, thicknessAxis + disY));
 				lastLength = textRect.width;
 				window.draw(text);
-				//if (i < quantity - 1) {
 				rectPtr.setPosition(temp + sf::Vector2f((i + 1)*widthPost + i + thicknessAxis, -rectPtr.getGlobalBounds().height / 4 * 3));
 				window.draw(rectPtr);
-				//}
 			}
 		}
 		rectPtr.setSize(sf::Vector2f(6, 2));

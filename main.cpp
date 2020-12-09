@@ -3,52 +3,49 @@
 #include <SFML/Graphics.hpp>
 
 int main(){
-	//RandomVector test2{};
-	//test2.generate();
-	//test2.safe();
+	// код для генерации последовательности
+	//RandomVector generator{};
+	//generator.generate();
+	//generator.safe();
 	sf::Font font{};
 	font.loadFromFile("consola.ttf");
-	Graphic graphic{ font, sf::Vector2f{ 250, 200 }, sf::Vector2f{ 150, 150 } };
+
+	Graphic graphic{ font, sf::Vector2f{ 350, 300 }, sf::Vector2f{ 50, 50 } };//создание и настройка графика
 	graphic.setColor(sf::Color::Blue);
 	graphic.setDisplacement(20);
 	graphic.setDisplayFlag(true,true);
 
-	//Histogram histogram{ font, sf::Vector2f{ 300, 250 }, sf::Vector2f{ 150, 150 } };
-	//histogram.setColor(sf::Color::Cyan);
-	//RandomVector test{};
-	////test.generate();
-	////test.safe();
-	//test.load();
-	//test.output();
-	SamplingDistribution test{};
-	test.load();
-	test.make();
-	test.outputProbs();
-	test.outputNumber();
-	test.calculateUnbiasedVarianceExpectedValue();
-	test.calculateUnbiasedVarianceEstimate();
-	VecD t;
-	t.push_back(0);
-	t.push_back(1);
-	t.push_back(2);
-	t.push_back(3);
-	graphic.make(t,integerVectorToDouble(test.number));
-	//histogram.make(t, integerVectorToDouble(test.number));
-	ExponentialDistribution test1;
-	test1.load();
-	test1.calculateExponential();
-	test1.makeEdges();
-	test1.make();
-	test1.calculateUnbiasedVarianceExpectedValue();
-	test1.calculateUnbiasedVarianceEstimate();
-	Histogram histogram1{ font, sf::Vector2f{ 400, 500 }, sf::Vector2f{ 100, 10 } };
-	histogram1.setDisplayFlag(true,true);
-	histogram1.setColor(sf::Color::Cyan);
+	Histogram histogram1{ font, sf::Vector2f{300, 300 }, sf::Vector2f{ 500, 50 } };//создание и настройка гистограммы
+	histogram1.setDisplayFlag(true, true);
+	histogram1.setColor(sf::Color(70,80,180));
 
-	histogram1.make(test1.edges, integerVectorToDouble(test1.number));
+	std::cout << "Task 1\n";
+	SamplingDistribution task1{};
+	task1.load();//загружаем выборку
+	task1.make();//считаем частоты
+	task1.outputProbs();//выводим вероятности полученные согласно цифрам зачётки
+	task1.outputNumber();//вывод частот и отночительных частот
+	task1.calculateUnbiasedVarianceExpectedValue();//вычисляем мат ожидание
+	task1.calculateUnbiasedVarianceEstimate();//вычисляем дисперсию
+	
+	graphic.make(vectorToAnotherType<VecI, VecD>(task1.variables), vectorToAnotherType<VecI,VecD>(task1.number));//заполнение осей графика
+
+	std::cout << "Task 2\n";
+	ExponentialDistribution task2;
+	task2.load();//загружаем выборку
+	task2.calculateExponential();//вычисляем экспоненциальных значений
+	task2.makeEdges();//создаём интервалы
+	task2.make();//считаем частоты
+	task1.outputNumber();//выводим их
+	task2.calculateUnbiasedVarianceExpectedValue();//вычисляем мат ожидание
+	task2.calculateUnbiasedVarianceEstimate();//вычисляем дисперсию
+	
+
+	histogram1.make(task2.edges, vectorToAnotherType<VecI, VecD>(task2.number));//заполнение осей гистограммы
 	sf::ContextSettings settings;
 	settings.antialiasingLevel=16;
-	sf::RenderWindow window(sf::VideoMode(600, 600), "SFML works!",sf::Style::Default,settings);
+
+	sf::RenderWindow window(sf::VideoMode(1000, 600), "SFML works!",sf::Style::Default,settings);
 	
 	window.clear(sf::Color::White);
 	
@@ -63,12 +60,9 @@ int main(){
 
 		window.clear(sf::Color::White);
 		graphic.draw(window);
-		//histogram.draw(window);
-		//histogram1.draw(window);
+		histogram1.draw(window);
 		window.display();
 	}
 
-	return 0;
-	getchar();
 	return 0;
 }
