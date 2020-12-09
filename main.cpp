@@ -3,45 +3,45 @@
 #include <SFML/Graphics.hpp>
 
 int main(){
-	// код для генерации последовательности
+	// РєРѕРґ РґР»СЏ РіРµРЅРµСЂР°С†РёРё РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚Рё
 	//RandomVector generator{};
 	//generator.generate();
 	//generator.safe();
 	sf::Font font{};
 	font.loadFromFile("consola.ttf");
 
-	Graphic graphic{ font, sf::Vector2f{ 350, 300 }, sf::Vector2f{ 50, 50 } };//создание и настройка графика
+	Graphic graphic{ font, sf::Vector2f{ 350, 300 }, sf::Vector2f{ 50, 50 } };//СЃРѕР·РґР°РЅРёРµ Рё РЅР°СЃС‚СЂРѕР№РєР° РіСЂР°С„РёРєР°
 	graphic.setColor(sf::Color::Blue);
 	graphic.setDisplacement(20);
 	graphic.setDisplayFlag(true,true);
 
-	Histogram histogram1{ font, sf::Vector2f{300, 300 }, sf::Vector2f{ 500, 50 } };//создание и настройка гистограммы
+	Histogram histogram1{ font, sf::Vector2f{300, 300 }, sf::Vector2f{ 500, 50 } };//СЃРѕР·РґР°РЅРёРµ Рё РЅР°СЃС‚СЂРѕР№РєР° РіРёСЃС‚РѕРіСЂР°РјРјС‹
 	histogram1.setDisplayFlag(true, true);
 	histogram1.setColor(sf::Color(70,80,180));
 
 	std::cout << "Task 1\n";
 	SamplingDistribution task1{};
-	task1.load();//загружаем выборку
-	task1.make();//считаем частоты
-	task1.outputProbs();//выводим вероятности полученные согласно цифрам зачётки
-	task1.outputNumber();//вывод частот и отночительных частот
-	task1.calculateUnbiasedVarianceExpectedValue();//вычисляем мат ожидание
-	task1.calculateUnbiasedVarianceEstimate();//вычисляем дисперсию
+	task1.load();//Р·Р°РіСЂСѓР¶Р°РµРј РІС‹Р±РѕСЂРєСѓ
+	task1.make();//СЃС‡РёС‚Р°РµРј С‡Р°СЃС‚РѕС‚С‹
+	task1.outputProbs();//РІС‹РІРѕРґРёРј РІРµСЂРѕСЏС‚РЅРѕСЃС‚Рё РїРѕР»СѓС‡РµРЅРЅС‹Рµ СЃРѕРіР»Р°СЃРЅРѕ С†РёС„СЂР°Рј Р·Р°С‡С‘С‚РєРё
+	task1.outputNumber();//РІС‹РІРѕРґ С‡Р°СЃС‚РѕС‚ Рё РѕС‚РЅРѕС‡РёС‚РµР»СЊРЅС‹С… С‡Р°СЃС‚РѕС‚
+	task1.calculateUnbiasedVarianceExpectedValue();//РІС‹С‡РёСЃР»СЏРµРј РјР°С‚ РѕР¶РёРґР°РЅРёРµ
+	task1.calculateUnbiasedVarianceEstimate();//РІС‹С‡РёСЃР»СЏРµРј РґРёСЃРїРµСЂСЃРёСЋ
 	
-	graphic.make(vectorToAnotherType<VecI, VecD>(task1.variables), vectorToAnotherType<VecI,VecD>(task1.number));//заполнение осей графика
+	graphic.make(vectorToAnotherType<VecI, VecD>(task1.variables), vectorToAnotherType<VecI,VecD>(task1.number));//Р·Р°РїРѕР»РЅРµРЅРёРµ РѕСЃРµР№ РіСЂР°С„РёРєР°
 
 	std::cout << "Task 2\n";
 	ExponentialDistribution task2;
-	task2.load();//загружаем выборку
-	task2.calculateExponential();//вычисляем экспоненциальных значений
-	task2.makeEdges();//создаём интервалы
-	task2.make();//считаем частоты
-	task1.outputNumber();//выводим их
-	task2.calculateUnbiasedVarianceExpectedValue();//вычисляем мат ожидание
-	task2.calculateUnbiasedVarianceEstimate();//вычисляем дисперсию
+	task2.load();//Р·Р°РіСЂСѓР¶Р°РµРј РІС‹Р±РѕСЂРєСѓ
+	task2.calculateExponential();//РІС‹С‡РёСЃР»СЏРµРј СЌРєСЃРїРѕРЅРµРЅС†РёР°Р»СЊРЅС‹С… Р·РЅР°С‡РµРЅРёР№
+	task2.makeEdges();//СЃРѕР·РґР°С‘Рј РёРЅС‚РµСЂРІР°Р»С‹
+	task2.make();//СЃС‡РёС‚Р°РµРј С‡Р°СЃС‚РѕС‚С‹
+	task1.outputNumber();//РІС‹РІРѕРґРёРј РёС…
+	task2.calculateUnbiasedVarianceExpectedValue();//РІС‹С‡РёСЃР»СЏРµРј РјР°С‚ РѕР¶РёРґР°РЅРёРµ
+	task2.calculateUnbiasedVarianceEstimate();//РІС‹С‡РёСЃР»СЏРµРј РґРёСЃРїРµСЂСЃРёСЋ
 	
 
-	histogram1.make(task2.edges, vectorToAnotherType<VecI, VecD>(task2.number));//заполнение осей гистограммы
+	histogram1.make(task2.edges, vectorToAnotherType<VecI, VecD>(task2.number));//Р·Р°РїРѕР»РЅРµРЅРёРµ РѕСЃРµР№ РіРёСЃС‚РѕРіСЂР°РјРјС‹
 	sf::ContextSettings settings;
 	settings.antialiasingLevel=16;
 
