@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
 
-typedef std::vector<double> VecD;//вектор для double
-typedef std::vector<double> VecI;//вектор для int
+typedef std::vector<double> VecD;//РІРµРєС‚РѕСЂ РґР»СЏ double
+typedef std::vector<double> VecI;//РІРµРєС‚РѕСЂ РґР»СЏ int
 template <typename T1, typename T2>
-T2 vectorToAnotherType(T1 vec) {//перевод вектора  T1 в вектор T2
+T2 vectorToAnotherType(T1 vec) {//РїРµСЂРµРІРѕРґ РІРµРєС‚РѕСЂР°  T1 РІ РІРµРєС‚РѕСЂ T2
 	T2 result;
 	result.resize(vec.size());
 	for (int i{ 0 }; i < vec.size(); i++) {
@@ -13,7 +13,7 @@ T2 vectorToAnotherType(T1 vec) {//перевод вектора  T1 в вектор T2
 	return result;
 }
 
-VecI addZeroToStart(VecD vec) {//добавление нуля в начало вектора
+VecI addZeroToStart(VecD vec) {//РґРѕР±Р°РІР»РµРЅРёРµ РЅСѓР»СЏ РІ РЅР°С‡Р°Р»Рѕ РІРµРєС‚РѕСЂР°
 	VecI result;
 	result.resize(vec.size() + 1);
 	result[0] = 0;
