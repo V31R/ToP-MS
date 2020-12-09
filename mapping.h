@@ -3,7 +3,7 @@
 #include <sstream>
 #include <utility>
 #include "vectors.h"
-class Mapping {//родительский класс для отображения графиков и гистограмм
+class Mapping {//СЂРѕРґРёС‚РµР»СЊСЃРєРёР№ РєР»Р°СЃСЃ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РіСЂР°С„РёРєРѕРІ Рё РіРёСЃС‚РѕРіСЂР°РјРј
 public:
 	Mapping(sf::Font & f, sf::Vector2f s, sf::Vector2f pos) :
 		font{ f },
@@ -21,8 +21,8 @@ public:
 		text.setOutlineColor(sf::Color::Black);
 		text.setOutlineThickness(2.f);
 	}
-	void make(VecD abc, VecD ord) {/*заполнение массивов по вертикальной и горизонтальной осям, 
-								   нахождение маскимальных элементов и их отношение в размеру отображения*/
+	void make(VecD abc, VecD ord) {/*Р·Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІРѕРІ РїРѕ РІРµСЂС‚РёРєР°Р»СЊРЅРѕР№ Рё РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕР№ РѕСЃСЏРј, 
+					РЅР°С…РѕР¶РґРµРЅРёРµ РјР°СЃРєРёРјР°Р»СЊРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ Рё РёС… РѕС‚РЅРѕС€РµРЅРёРµ РІ СЂР°Р·РјРµСЂСѓ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ*/
 		abcissa = abc;
 		ordinata = ord;
 		double max = 0;
@@ -44,14 +44,14 @@ public:
 		ordinata.push_back(size.y / max);
 
 	}
-	void setDisplayFlag(bool abc = false, bool ord = false) {//установка флагов отображения осей
+	void setDisplayFlag(bool abc = false, bool ord = false) {//СѓСЃС‚Р°РЅРѕРІРєР° С„Р»Р°РіРѕРІ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РѕСЃРµР№
 		justDisplay.first = abc;
 		justDisplay.second = ord;
 	}
-	void setColor(sf::Color color) {//установка цвета отображения данных
+	void setColor(sf::Color color) {//СѓСЃС‚Р°РЅРѕРІРєР° С†РІРµС‚Р° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РґР°РЅРЅС‹С…
 		dataColor = color;
 	}
-	virtual void draw(sf::RenderWindow & window) {//виртуальная функция отрисовки для переопределения
+	virtual void draw(sf::RenderWindow & window) {//РІРёСЂС‚СѓР°Р»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ РѕС‚СЂРёСЃРѕРІРєРё РґР»СЏ РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёСЏ
 
 		rect.setPosition(position);
 		rect.setSize(sf::Vector2f(thicknessAxis, size.y));
@@ -75,7 +75,7 @@ protected:
 	VecD ordinata;
 	sf::Vector2f position;
 };
-class Graphic :public Mapping {//класс для отображения графиков (знаю, что правильно Graph, но необходимо так)
+class Graphic :public Mapping {//РєР»Р°СЃСЃ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РіСЂР°С„РёРєРѕРІ (Р·РЅР°СЋ, С‡С‚Рѕ РїСЂР°РІРёР»СЊРЅРѕ Graph, РЅРѕ РЅРµРѕР±С…РѕРґРёРјРѕ С‚Р°Рє)
 public:
 	Graphic(sf::Font & f, sf::Vector2f s, sf::Vector2f pos) :
 		Mapping{ f, s, pos },
@@ -193,7 +193,7 @@ protected:
 	sf::VertexArray line;
 
 };
-class Histogram : public Mapping {//класс для отображения гистограмм
+class Histogram : public Mapping {//РєР»Р°СЃСЃ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РіРёСЃС‚РѕРіСЂР°РјРј
 public:
 	Histogram(sf::Font f, sf::Vector2f s, sf::Vector2f pos) :
 		Mapping{ f, s, pos }
