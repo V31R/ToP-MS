@@ -36,7 +36,7 @@ int main(){
 	task2.calculateExponential();//вычисляем экспоненциальных значений
 	task2.makeEdges();//создаём интервалы
 	task2.make();//считаем частоты
-	task1.outputNumber();//выводим их
+	task2.outputNumber();//выводим их
 	task2.calculateUnbiasedVarianceExpectedValue();//вычисляем мат ожидание
 	task2.calculateUnbiasedVarianceEstimate();//вычисляем дисперсию
 	
